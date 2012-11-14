@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	xmlns:character="http://dardo.com/eve-api/characters"
+	targetNamespace="http://dardo.com/eve-api/characters">
+	
+	<xs:element name="eveapi" type="character:CharactersApiType" />
+		
+	<xs:complexType name="CharactersApiType">
+		<xs:sequence>
+			<xs:element name="currentTime" type="xs:string" />
+			<xs:element name="result" type="character:CharactersResultType" />
+			<xs:element name="cachedUntil" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="CharactersResultType">
+		<xs:sequence>
+			<xs:element name="rowset" type="character:CharactersRowsetType" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="CharactersRowsetType">
+		<xs:sequence>
+			<xs:element name="row" type="character:CharactersRowType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="key" type="xs:string" />
+		<xs:attribute name="columns" type="xs:string" />
+	</xs:complexType>
+	
+	<xs:complexType name="CharactersRowType">
+		<!-- Character Sheet Row Types -->
+		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="characterID" type="xs:int" />
+		<xs:attribute name="corporationName" type="xs:string" />
+		<xs:attribute name="corporationID" type="xs:int" />
+	</xs:complexType>
+	
+</xs:schema>
